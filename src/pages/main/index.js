@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import api from '../../services/api'
-
+import { Link } from 'react-router-dom'
 import './styles.css'
 
 export default function Main() {
@@ -14,7 +14,6 @@ export default function Main() {
             const { docs, ...moreInfo } = response.data
             setProductInfo(moreInfo)
             setProducts(docs)
-            console.log(moreInfo)
         }
         getApi()
 
@@ -34,16 +33,12 @@ export default function Main() {
         setPages(pages + 1)
     }
 
-
-
-
-
     return (
         <div className="product-list">{products.map(product => (
             <article key={product._id}>
                 <strong>{product.title}</strong>
                 <p>{product.description}</p>
-                <a href="">Acessar</a>
+                <Link to={`/products/${product._id}`}>Acessar</Link>
             </article>))}
 
 
